@@ -18,5 +18,8 @@ namespace BusinessLayer.Interface
 
         //Interface method for User Login
         Task<int> UserLogin(Login data);
+
+        //Interface method for get all Employee detail
+        IEnumerable<UserDetails> GetAllUser();
     }
 }

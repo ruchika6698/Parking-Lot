@@ -65,5 +65,20 @@ namespace BusinessLayer.Services
                 throw new Exception(e.Message);
             }
         }
+
+        /// <summary>
+        ///  API for get all User details
+        /// </summary>
+        public IEnumerable<UserDetails> GetAllUser()
+        {
+            try
+            {
+                return _UserRepository.GetAllUser();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
     }
 }
