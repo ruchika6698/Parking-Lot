@@ -13,9 +13,12 @@ namespace RepositoryLayer.Interface
 {
     public interface IUserRepositoryLayer
     {
-        //Interface method for Employee Registration
+        //Interface method for user Registration
         Task<bool> UserRegister(Usermodel data);
-        //Interface method for Employee Login
+        //Interface method for user Login
         Task<int> UserLogin(Login data);
+
+        //Interface method for get all user detail
+        IEnumerable<UserDetails> GetAllUser();
     }
 }

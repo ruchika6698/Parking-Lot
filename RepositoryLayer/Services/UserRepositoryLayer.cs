@@ -42,14 +42,9 @@ namespace RepositoryLayer.Services
                 command.Parameters.AddWithValue("@FirstName", data.FirstName);
                 command.Parameters.AddWithValue("@LastName", data.LastName);
                 command.Parameters.AddWithValue("@EmailID", data.EmailID);
-                command.Parameters.AddWithValue("@DriverCategory", data.DriverCategory);
-                command.Parameters.AddWithValue("@Username", data.Username);
                 command.Parameters.AddWithValue("@Password", Password);
-                command.Parameters.AddWithValue("@VehicalNumber", data.VehicalNumber);
-                command.Parameters.AddWithValue("@VehicalBrand", data.VehicalBrand);
-                command.Parameters.AddWithValue("@ParkingType", data.ParkingType);
+                command.Parameters.AddWithValue("@UserRole", data.UserRole);
                 command.Parameters.AddWithValue("@CreateDate", data.CreateDate);
-                command.Parameters.AddWithValue("@ModifiedDate", data.ModifiedDate);
                 connection.Open();
                 int Response = await command.ExecuteNonQueryAsync();
                 connection.Close();
@@ -81,8 +76,10 @@ namespace RepositoryLayer.Services
                 //password encrption
                 string Password = EncryptedPassword.EncodePasswordToBase64(data.Password);
                 SqlCommand command = StoreProcedureConnection("spLogin", connection);
-                command.Parameters.AddWithValue("@Username", data.Username);
+                command.Parameters.AddWithValue("@EmailID", data.EmailID);
                 command.Parameters.AddWithValue("@Password", Password);
+                command.Parameters.AddWithValue("@UserRole", data.UserRole);
+
                 connection.Open();
                 SqlDataReader reader = await command.ExecuteReaderAsync();
                 int Status = 0;
@@ -99,6 +96,39 @@ namespace RepositoryLayer.Services
                 {
                     return 0;
                 }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        /// <summary>
+        ///  database connection for get all user details
+        /// </summary>
+        public IEnumerable<UserDetails> GetAllUser()
+        {
+            try
+            {
+                List<UserDetails> listuser = new List<UserDetails>();
+                SqlConnection connection = DatabaseConnection();
+                //for store procedure and connection to database 
+                SqlCommand command = StoreProcedureConnection("spAllParkingUser", connection);
+                connection.Open();
+                //Read data from database
+                SqlDataReader Response = command.ExecuteReader();
+                while (Response.Read())
+                {
+                    UserDetails user = new UserDetails();
+                    user.ID = Convert.ToInt32(Response["ID"]);
+                    user.FirstName = Response["FirstName"].ToString();
+                    user.LastName = Response["LastName"].ToString();
+                    user.EmailID = Response["EmailID"].ToString();
+                    user.UserRole = Response["UserRole"].ToString();
+                    listuser.Add(user);
+                }
+                connection.Close();
+                return listuser;
             }
             catch (Exception e)
             {
