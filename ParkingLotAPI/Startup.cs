@@ -48,18 +48,6 @@ namespace ParkingLotAPI
                         ValidAudience = Configuration["JWT:Audience"]
                     };
                 });
-            //Genetate token for user login
-            /*services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(options =>
-                {
-                    var serverSecret = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JWT:key"]));
-                    options.TokenValidationParameters = new TokenValidationParameters
-                    {
-                        IssuerSigningKey = serverSecret,
-                        ValidIssuer = Configuration["JWT:Issuer"],
-                        ValidAudience = Configuration["JWT:Audience"]
-                    };
-                });*/
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1",
@@ -70,7 +58,7 @@ namespace ParkingLotAPI
                         Version = "v1"
                     });
 
-                /*c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
                     Name = "Authorization",
                     Type = SecuritySchemeType.ApiKey,
@@ -93,7 +81,7 @@ namespace ParkingLotAPI
                             },
                             new string[] {}
                     }
-                });*/
+                });
             });
         }
 

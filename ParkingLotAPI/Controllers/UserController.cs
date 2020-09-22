@@ -32,7 +32,7 @@ namespace ParkingLotAPI.Controllers
         /// </summary>
         /// <param name="Info"> store the Complete Employee information</param>
         /// <returns></returns>
-        [Route("register")]
+        [Route("Register")]
         [HttpPost]
         public async Task<IActionResult> UserRegister([FromBody] Usermodel Info)
         {
@@ -42,13 +42,13 @@ namespace ParkingLotAPI.Controllers
                 //if data is not equal to null then Registration sucessful
                 if (!data.Equals(null))
                 {
-                    var status = "Success";
+                    var status = "True";
                     var Message = "Registration Successfull";
                     return this.Ok(new { status, Message, Info });
                 }
                 else                                     //Registration Fail
                 {
-                    var status = "Unsuccess";
+                    var status = "False";
                     var Message = "Registration Failed";
                     return this.BadRequest(new { status, Message, data = Info });
                 }
@@ -65,7 +65,7 @@ namespace ParkingLotAPI.Controllers
         /// <param name="Info"> Login API</param>
         /// <returns></returns>
         [HttpPost]
-        [Route("login")]
+        [Route("Login")]
         public async Task<IActionResult> UserLogin([FromBody] Login Info)
         {
             try
@@ -77,8 +77,8 @@ namespace ParkingLotAPI.Controllers
 
                 var claims = new List<Claim>
                 {
-                    new Claim("Username", Info.Username.ToString()),
-                    new Claim("Password", Info.Password.ToString())
+                    new Claim(ClaimTypes.Role, Info.UserRole.ToString()),
+                    new Claim("EmailID ", Info.EmailID.ToString())
                 };
                 var token = new JwtSecurityToken(_config["Jwt:Issuer"],
                     _config["Jwt:Issuer"],
@@ -88,14 +88,14 @@ namespace ParkingLotAPI.Controllers
                 //if Result is not equal to null then Login sucessful
                 if (Result != 0)
                 {
-                    var status = "Success";
+                    var status = "True";
                     var Message = "Login Successful";
                     var Token = new JwtSecurityTokenHandler().WriteToken(token);
-                    return Ok(new { status, Message, Token });
+                    return Ok(new { status, Message, Token});
                 }
                 else                                        //Username or Password Incorrect
                 {
-                    var status = "Unsuccess";
+                    var status = "False";
                     var Message = "Invaid Username Or Password";
                     return BadRequest(new { status, Message, Result = Info });
                 }
