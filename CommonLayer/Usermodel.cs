@@ -12,7 +12,7 @@ namespace CommonLayer
 {
         public class Usermodel
         {
-            [Required(ErrorMessage = "Employee Name Is Required")]
+            [Required(ErrorMessage = "User Name Is Required")]
             [RegularExpression("^[A-Z][a-zA-Z]{3,15}$", ErrorMessage = "First Name is not valid")]
             public string FirstName { get; set; }
 
@@ -23,22 +23,16 @@ namespace CommonLayer
             [RegularExpression("^[a-zA-Z0-9]{1,}([.]?[-]?[+]?[a-zA-Z0-9]{1,})?[@]{1}[a-zA-Z0-9]{1,}[.]{1}[a-z]{2,3}([.]?[a-z]{2})?$", ErrorMessage = "E-mail is not valid")]
             public string EmailID { get; set; }
 
-            [RegularExpression("^[A-Z][a-zA-Z]{3,15}$", ErrorMessage = "Driver Category is not valid")]
-            public string DriverCategory { get; set; }
-
-            [Required(ErrorMessage = "Username Is Required")]
-            public string Username { get; set; }
-
             [Required(ErrorMessage = "Password Is Required")]
             [RegularExpression("^.{8,15}$", ErrorMessage = "Password Length should be between 8 to 15")]
             public string Password { get; set; }
-            [Required(ErrorMessage = "Gender Is Required")]
-            public string VehicalNumber { get; set; }
-            public string VehicalBrand { get; set; }
-            public string ParkingType { get; set; }
+
+            [Required(ErrorMessage = "User Role Is Required")]
+
+            [RegularExpression("^[A-Z][a-zA-Z]{3,15}$", ErrorMessage = "User Role is not valid")]
+            public string UserRole { get; set; }
+
             //Create date 
             public DateTime CreateDate { get; set; } = DateTime.Now;
-            //Modified Date
-            public DateTime ModifiedDate { get; set; }
         }
 }

@@ -5,7 +5,7 @@ CREATE TABLE ParkingUser
   LastName varchar(50),
   EmailID varchar(50),
   Password varchar(50),
-  DriverCategory varchar(50),
+  UserRole varchar(50),
   CreateDate varchar(50)
 );
 select * from ParkingUser
