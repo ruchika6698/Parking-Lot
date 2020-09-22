@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BusinessLayer.Interface;
 using CommonLayer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -99,6 +100,39 @@ namespace ParkingLotAPI.Controllers
                     var Message = "Invaid Username Or Password";
                     return BadRequest(new { status, Message, Result = Info });
                 }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        /// <summary>
+        ///  API for get all User details
+        /// </summary>
+        [HttpGet]
+        [Authorize(Roles = "Owner")]
+        public ActionResult<IEnumerable<UserDetails>> GetAllUser()
+        {
+            try
+            {
+                //var user = HttpContext.User; 
+                //int EmailID = Convert.ToInt32(user.Claims.FirstOrDefault(u => u.Type == "EmailID").Value);
+                var result = BusinessLayer.GetAllUser();
+                //if result is not equal to zero then details found
+                if (!result.Equals(null))
+                {
+                    var Status = "True";
+                    var Message = "User Data found ";
+                    return this.Ok(new { Status, Message, Data = result });
+                }
+                else                                           //Data is not found
+                {
+                    var Status = "False";
+                    var Message = "User Data is not found";
+                    return this.BadRequest(new { Status, Message, Data = result });
+                }
+
             }
             catch (Exception e)
             {
