@@ -18,7 +18,7 @@ namespace BusinessLayer.Services
         /// <summary>
         ///  API for Registrion
         /// </summary>
-        /// <param name="data"> store the Complete Employee information</param>
+        /// <param name="data"> store the Complete User information</param>
         /// <returns></returns>
         public async Task<bool> UserRegister(Usermodel data)
         {
@@ -40,6 +40,7 @@ namespace BusinessLayer.Services
                 throw new Exception(e.Message);
             }
         }
+
         /// <summary>
         ///  API for Login
         /// </summary>
