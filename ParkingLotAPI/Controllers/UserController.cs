@@ -31,7 +31,7 @@ namespace ParkingLotAPI.Controllers
         /// <summary>
         ///  API for Registrion
         /// </summary>
-        /// <param name="Info"> store the Complete Employee information</param>
+        /// <param name="Info"> store the Complete User information</param>
         /// <returns></returns>
         [Route("Register")]
         [HttpPost]

@@ -37,6 +37,8 @@ namespace ParkingLotAPI
             services.AddSingleton<IConfiguration>(Configuration);
             services.AddTransient<IUserRepositoryLayer, UserRepositoryLayer>();
             services.AddTransient<IUserBusinessLayer, UserBusinessLayer>();
+            services.AddTransient<IParkingRepositoryLayer, ParkingRepositoryLayer>();
+            services.AddTransient<IParkingBusinessLayer, ParkingBusinessLayer>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
