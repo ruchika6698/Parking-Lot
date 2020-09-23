@@ -17,7 +17,8 @@ namespace RepositoryLayer.Interface
         Task<bool> UserRegister(Usermodel data);
         //Interface method for user Login
         Task<int> UserLogin(Login data);
-
+        //Interface method for get User detail by id
+        UserDetails Getspecificuser(int ID);
         //Interface method for get all user detail
         IEnumerable<UserDetails> GetAllUser();
     }

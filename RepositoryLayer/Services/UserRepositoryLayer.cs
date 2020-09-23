@@ -104,6 +104,40 @@ namespace RepositoryLayer.Services
         }
 
         /// <summary>
+        ///  database connection get specific user details
+        /// </summary>
+        /// <param name="ID">Add new Entry</param>
+        /// <returns></returns>
+        public UserDetails Getspecificuser(int ID)
+        {
+            try
+            {
+                UserDetails user = new UserDetails();
+                SqlConnection connection = DatabaseConnection();
+                //for store procedure and connection to database 
+                SqlCommand command = StoreProcedureConnection("spSpecificParkingUser", connection);
+                command.Parameters.Add("@ID", SqlDbType.Int).Value = ID;
+                connection.Open();
+                //Read data from database
+                SqlDataReader Response = command.ExecuteReader();
+                while (Response.Read())
+                {
+                    user.ID = Convert.ToInt32(Response["ID"]);
+                    user.FirstName = Response["FirstName"].ToString();
+                    user.LastName = Response["LastName"].ToString();
+                    user.EmailID = Response["EmailID"].ToString();
+                    user.UserRole = Response["UserRole"].ToString();
+                }
+                connection.Close();
+                return user;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        /// <summary>
         ///  database connection for get all user details
         /// </summary>
         public IEnumerable<UserDetails> GetAllUser()
