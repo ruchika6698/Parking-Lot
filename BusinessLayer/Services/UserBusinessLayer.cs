@@ -67,6 +67,40 @@ namespace BusinessLayer.Services
         }
 
         /// <summary>
+        ///  API for Delete data
+        /// </summary>
+        /// <param name="Data">Delete data</param>
+        /// <returns></returns>
+        /*public UserID DeleteUser(int ID)
+        {
+            try
+            {
+                return _UserRepository.DeleteUser(ID);
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }*/
+
+        /// <summary>
+        ///  API for get specific User details
+        /// </summary>
+        /// <param name="ID"> get specific Entry</param>
+        /// <returns></returns>
+        public UserDetails Getspecificuser(int ID)
+        {
+            try
+            {
+                return _UserRepository.Getspecificuser(ID);
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        /// <summary>
         ///  API for get all User details
         /// </summary>
         public IEnumerable<UserDetails> GetAllUser()
