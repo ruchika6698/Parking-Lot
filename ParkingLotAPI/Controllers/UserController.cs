@@ -112,7 +112,7 @@ namespace ParkingLotAPI.Controllers
         /// </summary>
         /// <param name="ID">Delete data</param>
         /// <returns></returns>
-        /*[HttpDelete("{ID}")]
+        [HttpDelete("{ID}")]
         public IActionResult DeleteUser(int ID)
         {
             try
@@ -136,7 +136,7 @@ namespace ParkingLotAPI.Controllers
             {
                 throw new Exception(e.Message);
             }
-        }*/
+        }
 
         // <summary>
         ///  API for get specific User  details
