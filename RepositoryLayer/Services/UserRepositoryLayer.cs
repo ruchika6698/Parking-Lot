@@ -104,6 +104,32 @@ namespace RepositoryLayer.Services
         }
 
         /// <summary>
+        ///  database connection for Delete data
+        /// </summary>
+        /// <param name="ID">Delete data</param>
+        /// <returns></returns>
+        public UserID DeleteUser(int ID)
+        {
+
+            try
+            {
+                UserID user = new UserID();
+                SqlConnection connection = DatabaseConnection();
+                //for store procedure and connection to database 
+                SqlCommand command = StoreProcedureConnection("spDeleteUser", connection);
+                command.Parameters.Add("@ID", SqlDbType.Int).Value = ID;
+                connection.Open();
+                SqlDataReader Response = command.ExecuteReader();
+                connection.Close();
+                return user;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        /// <summary>
         ///  database connection get specific user details
         /// </summary>
         /// <param name="ID">Add new Entry</param>
