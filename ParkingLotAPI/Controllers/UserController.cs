@@ -108,10 +108,73 @@ namespace ParkingLotAPI.Controllers
         }
 
         /// <summary>
+        ///  API for Delete data
+        /// </summary>
+        /// <param name="ID">Delete data</param>
+        /// <returns></returns>
+        /*[HttpDelete("{ID}")]
+        public IActionResult DeleteUser(int ID)
+        {
+            try
+            {
+                var result = BusinessLayer.DeleteUser(ID);
+                //if result is not equal to zero then details Deleted sucessfully
+                if (!result.Equals(null))
+                {
+                    var Status = "True";
+                    var Message = "User Data deleted Sucessfully";
+                    return this.Ok(new { Status, Message, Data = ID });
+                }
+                else                                           //Data is not deleted 
+                {
+                    var Status = "False";
+                    var Message = "User Data is not deleted Sucessfully";
+                    return this.BadRequest(new { Status, Message, Data = ID });
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }*/
+
+        // <summary>
+        ///  API for get specific User  details
+        /// </summary>
+        /// <param name="ID">Update data</param>
+        /// <returns></returns>
+        [HttpGet("{ID}")]
+        //[Authorize(Roles = "Owner")]
+        public IActionResult Getspecificuser(int ID)
+        {
+            try
+            {
+                var result = BusinessLayer.Getspecificuser(ID);
+                //if result is not equal to zero then details found
+                if (!result.Equals(null))
+                {
+                    var Status = "True";
+                    var Message = "User Data found ";
+                    return this.Ok(new { Status, Message, Data = result });
+                }
+                else                                           //Data is not found
+                {
+                    var Status = "False";
+                    var Message = "User Data is not found";
+                    return this.BadRequest(new { Status, Message, Data = result });
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        /// <summary>
         ///  API for get all User details
         /// </summary>
         [HttpGet]
-        [Authorize(Roles = "Owner")]
+        //[Authorize(Roles = "Owner")]
         public ActionResult<IEnumerable<UserDetails>> GetAllUser()
         {
             try
