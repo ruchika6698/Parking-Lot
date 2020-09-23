@@ -71,7 +71,7 @@ namespace BusinessLayer.Services
         /// </summary>
         /// <param name="Data">Delete data</param>
         /// <returns></returns>
-        /*public UserID DeleteUser(int ID)
+        public UserID DeleteUser(int ID)
         {
             try
             {
@@ -81,7 +81,7 @@ namespace BusinessLayer.Services
             {
                 throw new Exception(e.Message);
             }
-        }*/
+        }
 
         /// <summary>
         ///  API for get specific User details

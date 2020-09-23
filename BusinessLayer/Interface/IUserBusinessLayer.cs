@@ -19,6 +19,9 @@ namespace BusinessLayer.Interface
         //Interface method for User Login
         Task<int> UserLogin(Login data);
 
+        //Interface method for delete User detail
+        UserID DeleteUser(int ID);
+
         //Interface method for get Employee detail by id
         UserDetails Getspecificuser(int ID);
 
