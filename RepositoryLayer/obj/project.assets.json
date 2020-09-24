@@ -1362,11 +1362,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\boss\\source\\repos\\ParkingLOTAPI\\RepositoryLayer\\RepositoryLayer.csproj",
+      "projectUniqueName": "C:\\Users\\boss\\source\\repos\\PARKING_LOT\\RepositoryLayer\\RepositoryLayer.csproj",
       "projectName": "RepositoryLayer",
-      "projectPath": "C:\\Users\\boss\\source\\repos\\ParkingLOTAPI\\RepositoryLayer\\RepositoryLayer.csproj",
+      "projectPath": "C:\\Users\\boss\\source\\repos\\PARKING_LOT\\RepositoryLayer\\RepositoryLayer.csproj",
       "packagesPath": "C:\\Users\\boss\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\boss\\source\\repos\\ParkingLOTAPI\\RepositoryLayer\\obj\\",
+      "outputPath": "C:\\Users\\boss\\source\\repos\\PARKING_LOT\\RepositoryLayer\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\boss\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -1382,8 +1382,8 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-            "C:\\Users\\boss\\source\\repos\\ParkingLOTAPI\\CommonLayer\\CommonLayer.csproj": {
-              "projectPath": "C:\\Users\\boss\\source\\repos\\ParkingLOTAPI\\CommonLayer\\CommonLayer.csproj"
+            "C:\\Users\\boss\\source\\repos\\PARKING_LOT\\CommonLayer\\CommonLayer.csproj": {
+              "projectPath": "C:\\Users\\boss\\source\\repos\\PARKING_LOT\\CommonLayer\\CommonLayer.csproj"
             }
           }
         }

@@ -12,3 +12,17 @@ C:\Users\boss\source\repos\ParkingLOTAPI\BusinessLayer\obj\Debug\netcoreapp2.1\B
 C:\Users\boss\source\repos\ParkingLOTAPI\BusinessLayer\obj\Debug\netcoreapp2.1\BusinessLayer.csproj.CopyComplete
 C:\Users\boss\source\repos\ParkingLOTAPI\BusinessLayer\obj\Debug\netcoreapp2.1\BusinessLayer.dll
 C:\Users\boss\source\repos\ParkingLOTAPI\BusinessLayer\obj\Debug\netcoreapp2.1\BusinessLayer.pdb
+C:\Users\boss\source\repos\PARKING_LOT\BusinessLayer\bin\Debug\netcoreapp2.1\BusinessLayer.deps.json
+C:\Users\boss\source\repos\PARKING_LOT\BusinessLayer\bin\Debug\netcoreapp2.1\BusinessLayer.dll
+C:\Users\boss\source\repos\PARKING_LOT\BusinessLayer\bin\Debug\netcoreapp2.1\BusinessLayer.pdb
+C:\Users\boss\source\repos\PARKING_LOT\BusinessLayer\bin\Debug\netcoreapp2.1\CommonLayer.dll
+C:\Users\boss\source\repos\PARKING_LOT\BusinessLayer\bin\Debug\netcoreapp2.1\RepositoryLayer.dll
+C:\Users\boss\source\repos\PARKING_LOT\BusinessLayer\bin\Debug\netcoreapp2.1\CommonLayer.pdb
+C:\Users\boss\source\repos\PARKING_LOT\BusinessLayer\bin\Debug\netcoreapp2.1\RepositoryLayer.pdb
+C:\Users\boss\source\repos\PARKING_LOT\BusinessLayer\obj\Debug\netcoreapp2.1\BusinessLayer.csprojAssemblyReference.cache
+C:\Users\boss\source\repos\PARKING_LOT\BusinessLayer\obj\Debug\netcoreapp2.1\BusinessLayer.csproj.CoreCompileInputs.cache
+C:\Users\boss\source\repos\PARKING_LOT\BusinessLayer\obj\Debug\netcoreapp2.1\BusinessLayer.AssemblyInfoInputs.cache
+C:\Users\boss\source\repos\PARKING_LOT\BusinessLayer\obj\Debug\netcoreapp2.1\BusinessLayer.AssemblyInfo.cs
+C:\Users\boss\source\repos\PARKING_LOT\BusinessLayer\obj\Debug\netcoreapp2.1\BusinessLayer.csproj.CopyComplete
+C:\Users\boss\source\repos\PARKING_LOT\BusinessLayer\obj\Debug\netcoreapp2.1\BusinessLayer.dll
+C:\Users\boss\source\repos\PARKING_LOT\BusinessLayer\obj\Debug\netcoreapp2.1\BusinessLayer.pdb

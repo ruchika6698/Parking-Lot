@@ -44,22 +44,15 @@ namespace BusinessLayer.Services
         /// <summary>
         ///  API for Login
         /// </summary>
-        /// <param name="data"> Login API</param>
+        /// <param name="user"> Login API</param>
         /// <returns></returns>
-        public async Task<int> UserLogin(Login data)
+        public UserDetails UserLogin(Login user)
         {
             try
             {
-                var Result = await _UserRepository.UserLogin(data);
-                //if result is not equal null then return true
-                if (!Result.Equals(0))
-                {
-                    return 1;
-                }
-                else
-                {
-                    return 0;
-                }
+                var result = _UserRepository.UserLogin(user);
+
+                return result;
             }
             catch (Exception e)
             {

@@ -17,7 +17,7 @@ namespace BusinessLayer.Interface
         Task<bool> UserRegister(Usermodel data);
 
         //Interface method for User Login
-        Task<int> UserLogin(Login data);
+        UserDetails UserLogin(Login user);
 
         //Interface method for delete User detail
         UserID DeleteUser(int ID);

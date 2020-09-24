@@ -66,40 +66,43 @@ namespace RepositoryLayer.Services
         /// <summary>
         ///   database connection for Login
         /// </summary>
-        /// <param name="data"> Login API</param>
+        /// <param name="user"> Login API</param>
         /// <returns></returns>
-        public async Task<int> UserLogin(Login data)
+        public UserDetails UserLogin(Login user)
         {
+            UserDetails details = new UserDetails();
             try
             {
                 SqlConnection connection = DatabaseConnection();
                 //password encrption
-                string Password = EncryptedPassword.EncodePasswordToBase64(data.Password);
+                string Password = EncryptedPassword.EncodePasswordToBase64(user.Password);
                 SqlCommand command = StoreProcedureConnection("spLogin", connection);
-                command.Parameters.AddWithValue("@EmailID", data.EmailID);
+                command.Parameters.AddWithValue("@EmailID", user.EmailID);
                 command.Parameters.AddWithValue("@Password", Password);
-                command.Parameters.AddWithValue("@UserRole", data.UserRole);
 
                 connection.Open();
-                SqlDataReader reader = await command.ExecuteReaderAsync();
-                int Status = 0;
-                while (reader.Read())
-                {
-                    Status = reader.GetInt32(0);
-                }
-                connection.Close();
-                if (Status == 1)
-                {
-                    return 1;
-                }
-                else
-                {
-                    return 0;
-                }
+
+                //read data form the database
+                SqlDataReader reader = command.ExecuteReader();
+
+
+                    //While Loop For Reading status result from SqlDataReader.
+                    while (reader.Read())
+                    {
+                        details.ID = Convert.ToInt32(reader["ID"].ToString());
+                        details.FirstName = reader["FirstName"].ToString();
+                        details.LastName = reader["LastName"].ToString();
+                        details.UserRole = reader["UserRole"].ToString();
+                        details.EmailID = reader["EmailID"].ToString();
+                    }
+
+                    //connection close 
+                    connection.Close();
+                return details;
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw new Exception(e.Message);
+                throw new Exception(ex.Message);
             }
         }
 
