@@ -63,42 +63,42 @@ namespace ParkingLotAPI.Controllers
         /// <summary>
         ///  API for Login
         /// </summary>
-        /// <param name="Info"> Login API</param>
+        /// <param name="login"> Login API</param>
         /// <returns></returns>
         [HttpPost]
         [Route("Login")]
-        public async Task<IActionResult> UserLogin([FromBody] Login Info)
+        public IActionResult UserLogin(Login login)
         {
             try
             {
-                int Result = await BusinessLayer.UserLogin(Info);
-                var symmetricSecuritykey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
+                UserDetails data = BusinessLayer.UserLogin(login);
 
-                var signingCreds = new SigningCredentials(symmetricSecuritykey, SecurityAlgorithms.HmacSha256);
+                bool success = false;
+                string message;
+                UserDetails DATA;
 
-                var claims = new List<Claim>
+                UserDetails Data = new UserDetails()
                 {
-                    new Claim(ClaimTypes.Role, Info.UserRole.ToString()),
-                    new Claim("EmailID ", Info.EmailID.ToString())
+                    ID = data.ID,
+                    FirstName = data.FirstName,
+                    LastName = data.LastName,
+                    UserRole = data.UserRole,
+                    EmailID = data.EmailID
                 };
-                var token = new JwtSecurityToken(_config["Jwt:Issuer"],
-                    _config["Jwt:Issuer"],
-                    claims,
-                    expires: DateTime.Now.AddHours(120),
-                    signingCredentials: signingCreds);
-                //if Result is not equal to null then Login sucessful
-                if (Result != 0)
+
+                if (data.EmailID != null)
                 {
-                    var status = "True";
-                    var Message = "Login Successful";
-                    var Token = new JwtSecurityTokenHandler().WriteToken(token);
-                    return Ok(new { status, Message, Token});
+                    string JsonToken = CreateToken(data, "AuthenticateUserRole");
+                    success = true;
+                    message = "Login Successfully";
+                    DATA = Data;
+                    return Ok(new { success, message, DATA, JsonToken });
                 }
-                else                                        //Username or Password Incorrect
+                else
                 {
-                    var status = "False";
-                    var Message = "Invaid Username Or Password";
-                    return BadRequest(new { status, Message, Result = Info });
+                    message = "Enter Valid Email & Password";
+                    //DATA = login;
+                    return NotFound(new { success, message });
                 }
             }
             catch (Exception e)
@@ -107,12 +107,40 @@ namespace ParkingLotAPI.Controllers
             }
         }
 
-        /// <summary>
-        ///  API for Delete data
-        /// </summary>
-        /// <param name="ID">Delete data</param>
-        /// <returns></returns>
-        [HttpDelete("{ID}")]
+        //Method to create JWT token
+        private string CreateToken(UserDetails responseData, string type)
+        {
+            try
+            {
+                var symmetricSecuritykey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
+                var signingCreds = new SigningCredentials(symmetricSecuritykey, SecurityAlgorithms.HmacSha256);
+
+                var claims = new List<Claim>();
+                claims.Add(new Claim(ClaimTypes.Role, responseData.UserRole));
+                claims.Add(new Claim("EmailID", responseData.EmailID.ToString()));
+                claims.Add(new Claim("ID", responseData.ID.ToString()));
+                claims.Add(new Claim("TokenType", type));
+                claims.Add(new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()));
+
+                var token = new JwtSecurityToken(_config["Jwt:Issuer"],
+                    _config["Jwt:Issuer"],
+                    claims,
+                    expires: DateTime.Now.AddDays(1),
+                    signingCredentials: signingCreds);
+                return new JwtSecurityTokenHandler().WriteToken(token);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+    /// <summary>
+    ///  API for Delete data
+    /// </summary>
+    /// <param name="ID">Delete data</param>
+    /// <returns></returns>
+    [HttpDelete("{ID}")]
         public IActionResult DeleteUser(int ID)
         {
             try

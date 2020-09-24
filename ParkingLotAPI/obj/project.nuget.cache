@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "c5NIMwTSq0+FvYQMKc2VxZyCCnUbRmzUVjE28DUA8nv7DuaJZZSE5exoCsGtuke0cmDQ6Y6+k4kUzGK6yvOroA==",
+  "dgSpecHash": "LFlI2+MAtH6g2N2L6OdFGur+0dYE2BduF1SuWVFUfSyS7VrxRsb1jH/TkdoFez5DPw+gB3/QBWCYp3XvWcTk3A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\boss\\source\\repos\\ParkingLOTAPI\\ParkingLotAPI\\ParkingLotAPI.csproj",
+  "projectFilePath": "C:\\Users\\boss\\source\\repos\\PARKING_LOT\\ParkingLotAPI\\ParkingLotAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\boss\\.nuget\\packages\\microsoft.aspnet.webapi.client\\5.2.6\\microsoft.aspnet.webapi.client.5.2.6.nupkg.sha512",
     "C:\\Users\\boss\\.nuget\\packages\\microsoft.aspnetcore\\2.1.1\\microsoft.aspnetcore.2.1.1.nupkg.sha512",
