@@ -830,11 +830,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\boss\\source\\repos\\ParkingLOTAPI\\CommonLayer\\CommonLayer.csproj",
+      "projectUniqueName": "C:\\Users\\boss\\source\\repos\\PARKING_LOT\\CommonLayer\\CommonLayer.csproj",
       "projectName": "CommonLayer",
-      "projectPath": "C:\\Users\\boss\\source\\repos\\ParkingLOTAPI\\CommonLayer\\CommonLayer.csproj",
+      "projectPath": "C:\\Users\\boss\\source\\repos\\PARKING_LOT\\CommonLayer\\CommonLayer.csproj",
       "packagesPath": "C:\\Users\\boss\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\boss\\source\\repos\\ParkingLOTAPI\\CommonLayer\\obj\\",
+      "outputPath": "C:\\Users\\boss\\source\\repos\\PARKING_LOT\\CommonLayer\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\boss\\AppData\\Roaming\\NuGet\\NuGet.Config",

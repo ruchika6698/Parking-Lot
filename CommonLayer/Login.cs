@@ -18,9 +18,5 @@ namespace CommonLayer
         [Required(ErrorMessage = "Password Is Required")]
         [RegularExpression("^.{8,30}$", ErrorMessage = "Password Length should be between 8 to 15")]
         public string Password { get; set; }
-
-        [MaxLength(50)]
-        //User Role
-        public string UserRole { get; set; }
     }
 }

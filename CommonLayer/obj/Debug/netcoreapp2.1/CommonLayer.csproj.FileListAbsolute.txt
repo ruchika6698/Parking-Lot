@@ -7,3 +7,12 @@ C:\Users\boss\source\repos\ParkingLOTAPI\CommonLayer\bin\Debug\netcoreapp2.1\Com
 C:\Users\boss\source\repos\ParkingLOTAPI\CommonLayer\obj\Debug\netcoreapp2.1\CommonLayer.csproj.CoreCompileInputs.cache
 C:\Users\boss\source\repos\ParkingLOTAPI\CommonLayer\obj\Debug\netcoreapp2.1\CommonLayer.dll
 C:\Users\boss\source\repos\ParkingLOTAPI\CommonLayer\obj\Debug\netcoreapp2.1\CommonLayer.pdb
+C:\Users\boss\source\repos\PARKING_LOT\CommonLayer\bin\Debug\netcoreapp2.1\CommonLayer.deps.json
+C:\Users\boss\source\repos\PARKING_LOT\CommonLayer\bin\Debug\netcoreapp2.1\CommonLayer.dll
+C:\Users\boss\source\repos\PARKING_LOT\CommonLayer\bin\Debug\netcoreapp2.1\CommonLayer.pdb
+C:\Users\boss\source\repos\PARKING_LOT\CommonLayer\obj\Debug\netcoreapp2.1\CommonLayer.csprojAssemblyReference.cache
+C:\Users\boss\source\repos\PARKING_LOT\CommonLayer\obj\Debug\netcoreapp2.1\CommonLayer.csproj.CoreCompileInputs.cache
+C:\Users\boss\source\repos\PARKING_LOT\CommonLayer\obj\Debug\netcoreapp2.1\CommonLayer.AssemblyInfoInputs.cache
+C:\Users\boss\source\repos\PARKING_LOT\CommonLayer\obj\Debug\netcoreapp2.1\CommonLayer.AssemblyInfo.cs
+C:\Users\boss\source\repos\PARKING_LOT\CommonLayer\obj\Debug\netcoreapp2.1\CommonLayer.dll
+C:\Users\boss\source\repos\PARKING_LOT\CommonLayer\obj\Debug\netcoreapp2.1\CommonLayer.pdb
