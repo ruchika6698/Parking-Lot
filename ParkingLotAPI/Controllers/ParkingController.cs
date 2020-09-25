@@ -1,4 +1,9 @@
-﻿using System;
+﻿///-----------------------------------------------------------------
+///   Class:       ParkingController
+///   Description: Parking Controller
+///   Author:      Ruchika                   Date: 25/9/2020
+///-----------------------------------------------------------------
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -38,20 +43,52 @@ namespace ParkingLotAPI.Controllers
                 //if data is not equal to null then Parking Vehicle Registration sucessful
                 if (!data.Equals(null))
                 {
-                    var status = "True";
+                    var Success = "True";
                     var Message = "Parking Vehicle Registration Successfull";
-                    return this.Ok(new { status, Message, Info });
+                    return this.Ok(new { Success, Message, Info });
                 }
                 else                                     //Parking Vehicle Registration Fail
                 {
-                    var status = "False";
+                    var Success = "False";
                     var Message = "Parking Vehicle Registration Failed";
-                    return this.BadRequest(new { status, Message, data = Info });
+                    return this.BadRequest(new { Success, Message, data = Info });
                 }
             }
             catch (Exception e)
             {
-                return BadRequest(new { error = e.Message });
+                throw new Exception(e.Message);
+            }
+        }
+
+
+        /// <summary>
+        ///  API for get all Parking Vehicles details
+        /// </summary>
+        [HttpGet]
+        //[Authorize(Roles = "Owner")]
+        public ActionResult<IEnumerable<ParkingDetails>> GetAllParkingDetails()
+        {
+            try
+            {
+                var result = BusinessLayer.GetAllParkingDetails();
+                //if result is not equal to zero then details found
+                if (!result.Equals(null))
+                {
+                    var Success = "True";
+                    var Message = "Parking Details found ";
+                    return this.Ok(new { Success, Message, Data = result });
+                }
+                else                                           //Data is not found
+                {
+                    var Success = "False";
+                    var Message = "Parking Details not found";
+                    return this.BadRequest(new { Success, Message, Data = result });
+                }
+
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
             }
         }
     }

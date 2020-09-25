@@ -1,4 +1,9 @@
-﻿using System;
+﻿///-----------------------------------------------------------------
+///   Class:       UserController
+///   Description: User Controller
+///   Author:      Ruchika                   Date: 25/9/2020
+///-----------------------------------------------------------------
+using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
@@ -43,15 +48,15 @@ namespace ParkingLotAPI.Controllers
                 //if data is not equal to null then Registration sucessful
                 if (!data.Equals(null))
                 {
-                    var status = "True";
+                    var Success = "True";
                     var Message = "Registration Successfull";
-                    return this.Ok(new { status, Message, Info });
+                    return this.Ok(new { Success, Message, Info });
                 }
                 else                                     //Registration Fail
                 {
-                    var status = "False";
+                    var Success = "False";
                     var Message = "Registration Failed";
-                    return this.BadRequest(new { status, Message, data = Info });
+                    return this.BadRequest(new { Success, Message, data = Info });
                 }
             }
             catch (Exception e)
@@ -73,7 +78,7 @@ namespace ParkingLotAPI.Controllers
             {
                 UserDetails data = BusinessLayer.UserLogin(login);
 
-                bool success = false;
+                bool Success = false;
                 string message;
                 UserDetails DATA;
 
@@ -89,16 +94,16 @@ namespace ParkingLotAPI.Controllers
                 if (data.EmailID != null)
                 {
                     string JsonToken = CreateToken(data, "AuthenticateUserRole");
-                    success = true;
+                    Success = true;
                     message = "Login Successfully";
                     DATA = Data;
-                    return Ok(new { success, message, DATA, JsonToken });
+                    return Ok(new { Success, message, DATA, JsonToken });
                 }
                 else
                 {
                     message = "Enter Valid Email & Password";
                     //DATA = login;
-                    return NotFound(new { success, message });
+                    return NotFound(new { Success, message });
                 }
             }
             catch (Exception e)
@@ -149,15 +154,15 @@ namespace ParkingLotAPI.Controllers
                 //if result is not equal to zero then details Deleted sucessfully
                 if (!result.Equals(null))
                 {
-                    var Status = "True";
+                    var Success = "True";
                     var Message = "User Data deleted Sucessfully";
-                    return this.Ok(new { Status, Message, Data = ID });
+                    return this.Ok(new { Success, Message, Data = ID });
                 }
                 else                                           //Data is not deleted 
                 {
-                    var Status = "False";
+                    var Success = "False";
                     var Message = "User Data is not deleted Sucessfully";
-                    return this.BadRequest(new { Status, Message, Data = ID });
+                    return this.BadRequest(new { Success, Message, Data = ID });
                 }
             }
             catch (Exception e)
@@ -181,15 +186,15 @@ namespace ParkingLotAPI.Controllers
                 //if result is not equal to zero then details found
                 if (!result.Equals(null))
                 {
-                    var Status = "True";
+                    var Success = "True";
                     var Message = "User Data found ";
-                    return this.Ok(new { Status, Message, Data = result });
+                    return this.Ok(new { Success, Message, Data = result });
                 }
                 else                                           //Data is not found
                 {
-                    var Status = "False";
+                    var Success = "False";
                     var Message = "User Data is not found";
-                    return this.BadRequest(new { Status, Message, Data = result });
+                    return this.BadRequest(new { Success, Message, Data = result });
                 }
             }
             catch (Exception e)
@@ -213,15 +218,15 @@ namespace ParkingLotAPI.Controllers
                 //if result is not equal to zero then details found
                 if (!result.Equals(null))
                 {
-                    var Status = "True";
+                    var Success = "True";
                     var Message = "User Data found ";
-                    return this.Ok(new { Status, Message, Data = result });
+                    return this.Ok(new { Success, Message, Data = result });
                 }
                 else                                           //Data is not found
                 {
-                    var Status = "False";
+                    var Success = "False";
                     var Message = "User Data is not found";
-                    return this.BadRequest(new { Status, Message, Data = result });
+                    return this.BadRequest(new { Success, Message, Data = result });
                 }
 
             }
