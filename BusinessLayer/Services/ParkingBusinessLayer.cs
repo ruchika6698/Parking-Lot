@@ -49,6 +49,23 @@ namespace BusinessLayer.Services
         }
 
         /// <summary>
+        ///  API for get specific User details
+        /// </summary>
+        /// <param name="ID"> get specific Entry</param>
+        /// <returns></returns>
+        public ParkingDetails GetspecificParkingDetails(int ParkingID)
+        {
+            try
+            {
+                return _ParkingRepository.GetspecificParkingDetails(ParkingID);
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        /// <summary>
         ///  API for get all Vehicle parking details
         /// </summary>
         public IEnumerable<ParkingDetails> GetAllParkingDetails()
