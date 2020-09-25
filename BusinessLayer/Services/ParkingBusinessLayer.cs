@@ -1,4 +1,9 @@
-﻿using BusinessLayer.Interface;
+﻿///-----------------------------------------------------------------
+///   Class:       ParkingBusinessLayer
+///   Description: Business Layer Services for Parking
+///   Author:      Ruchika                   Date: 25/9/2020
+///-----------------------------------------------------------------
+using BusinessLayer.Interface;
 using CommonLayer;
 using RepositoryLayer.Interface;
 using RepositoryLayer.Services;
@@ -36,6 +41,21 @@ namespace BusinessLayer.Services
                 {
                     return false;
                 }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        /// <summary>
+        ///  API for get all Vehicle parking details
+        /// </summary>
+        public IEnumerable<ParkingDetails> GetAllParkingDetails()
+        {
+            try
+            {
+                return _ParkingRepository.GetAllParkingDetails();
             }
             catch (Exception e)
             {

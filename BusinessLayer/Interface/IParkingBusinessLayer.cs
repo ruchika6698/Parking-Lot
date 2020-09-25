@@ -1,4 +1,9 @@
-﻿using CommonLayer;
+﻿///-----------------------------------------------------------------
+///   Class:       IParkingBusinessLayer
+///   Description: Business Layer Services for Parking
+///   Author:      Ruchika                   Date: 25/9/2020
+///-----------------------------------------------------------------
+using CommonLayer;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,5 +15,8 @@ namespace BusinessLayer.Interface
     {
         //Interface method for Parking Vehicle Registration
         Task<bool> VehicleParking(VehicleModel data);
+
+        //Interface method for get all Parking Vehicle detail
+        IEnumerable<ParkingDetails> GetAllParkingDetails();
     }
 }
