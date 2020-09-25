@@ -60,6 +60,37 @@ namespace ParkingLotAPI.Controllers
             }
         }
 
+        /// <summary>
+        ///  API for get specific Parking details
+        /// </summary>
+        /// <param name="ParkingID">get specific  data</param>
+        /// <returns></returns>
+        [HttpGet("{ParkingID}")]
+        //[Authorize(Roles = "Owner")]
+        public IActionResult GetspecificParkingDetails(int ParkingID)
+        {
+            try
+            {
+                var result = BusinessLayer.GetspecificParkingDetails(ParkingID);
+                //if result is not equal to zero then details found
+                if (!result.Equals(null))
+                {
+                    var Success = "True";
+                    var Message = "Parking Details found ";
+                    return this.Ok(new { Success, Message, Data = result });
+                }
+                else                                           //Data is not found
+                {
+                    var Success = "False";
+                    var Message = "Parking Details not found";
+                    return this.BadRequest(new { Success, Message, Data = result });
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
 
         /// <summary>
         ///  API for get all Parking Vehicles details

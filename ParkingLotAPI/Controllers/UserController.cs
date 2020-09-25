@@ -171,7 +171,7 @@ namespace ParkingLotAPI.Controllers
             }
         }
 
-        // <summary>
+        /// <summary>
         ///  API for get specific User  details
         /// </summary>
         /// <param name="ID">Update data</param>
