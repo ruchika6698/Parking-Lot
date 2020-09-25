@@ -1,4 +1,9 @@
-﻿using CommonLayer;
+﻿///-----------------------------------------------------------------
+///   Class:       ParkingRepositoryLayer
+///   Description: Repository Layer Services for Parking
+///   Author:      Ruchika                   Date: 25/9/2020
+///-----------------------------------------------------------------
+using CommonLayer;
 using Microsoft.Extensions.Configuration;
 using RepositoryLayer.Interface;
 using System;
@@ -31,7 +36,7 @@ namespace RepositoryLayer.Services
                 SqlConnection connection = DatabaseConnection();
                 //for store procedure and connection to database
                 SqlCommand command = StoreProcedureConnection("spVehicleParking", connection);
-                command.Parameters.AddWithValue("@VehicleOwnerName", data.VehicleOwnerName);
+                command.Parameters.AddWithValue("@UserID", data.UserID);
                 command.Parameters.AddWithValue("@VehicleOwnerAddress", data.VehicleOwnerAddress);
                 command.Parameters.AddWithValue("@VehicleNumber", data.VehicleNumber);
                 command.Parameters.AddWithValue("@VehicalBrand", data.VehicalBrand);
@@ -39,6 +44,7 @@ namespace RepositoryLayer.Services
                 command.Parameters.AddWithValue("@ParkingSlot", data.ParkingSlot);
                 command.Parameters.AddWithValue("@ParkingUserCategory", data.ParkingUserCategory);
                 command.Parameters.AddWithValue("@ParkingStatus", data.ParkingStatus);
+                command.Parameters.AddWithValue("@Charges", data.Charges);
                 command.Parameters.AddWithValue("@EntryTime", data.EntryTime);
                 command.Parameters.AddWithValue("@ExitTime", data.ExitTime);
                 connection.Open();
@@ -58,6 +64,47 @@ namespace RepositoryLayer.Services
                 throw new Exception(e.Message);
             }
         }
+
+        /// <summary>
+        ///  database connection for get all user details
+        /// </summary>
+        public IEnumerable<ParkingDetails> GetAllParkingDetails()
+        {
+            try
+            {
+                List<ParkingDetails> listuser = new List<ParkingDetails>();
+                SqlConnection connection = DatabaseConnection();
+                //for store procedure and connection to database 
+                SqlCommand command = StoreProcedureConnection("spAllVehicleParking", connection);
+                connection.Open();
+                //Read data from database
+                SqlDataReader Response = command.ExecuteReader();
+                while (Response.Read())
+                {
+                    ParkingDetails user = new ParkingDetails();
+                    user.ParkingID = Convert.ToInt32(Response["ParkingID"]);
+                    user.UserID = Convert.ToInt32(Response["UserID"]);
+                    user.VehicleOwnerAddress = Response["VehicleOwnerAddress"].ToString();
+                    user.VehicleNumber = Response["VehicleNumber"].ToString();
+                    user.VehicalBrand = Response["VehicalBrand"].ToString();
+                    user.VehicalColor = Response["VehicalColor"].ToString();
+                    user.ParkingSlot = Response["ParkingSlot"].ToString();
+                    user.ParkingUserCategory = Response["ParkingUserCategory"].ToString();
+                    user.ParkingStatus = Response["ParkingStatus"].ToString();
+                    user.Charges = Response["Charges"].ToString();
+                    user.EntryTime = Convert.ToDateTime(Response["EntryTime"]);
+                    user.ExitTime = Convert.ToDateTime(Response["ExitTime"]);
+                    listuser.Add(user);
+                }
+                connection.Close();
+                return listuser;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
 
         /// <summary>
         ///  database connection with connection string
