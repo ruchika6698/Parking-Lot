@@ -16,6 +16,9 @@ namespace RepositoryLayer.Interface
         //Interface method for Parking Vehicle Registration
         Task<bool> VehicleParking(VehicleModel data);
 
+        //Interface method for get Parking detail by id
+        ParkingDetails GetspecificParkingDetails(int ParkingID);
+
         //Interface method for get all Parking Vehicle detail
         IEnumerable<ParkingDetails> GetAllParkingDetails();
     }

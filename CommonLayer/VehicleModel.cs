@@ -10,7 +10,7 @@ namespace CommonLayer
     {
         [Required(ErrorMessage = "Vehicle Owner Name Is Required")]
         [RegularExpression("^[A-Z][a-zA-Z]{3,25}$", ErrorMessage = "First Name is not valid")]
-        public string VehicleOwnerName { get; set; }
+        public int UserID { get; set; }
 
         [Required(ErrorMessage = "Vehicle owner address Is Required")]
         [RegularExpression("^[A-Z][a-zA-Z]{3,100}$", ErrorMessage = "Last Name is not valid")]
@@ -33,6 +33,10 @@ namespace CommonLayer
 
         [Required(ErrorMessage = "Parking Status Is Required")]
         public string ParkingStatus { get; set; }
+
+        [Required(ErrorMessage = "Charges Is Required")]
+        public string Charges { get; set; }
+
 
         //Entry time
         public DateTime EntryTime { get; set; }

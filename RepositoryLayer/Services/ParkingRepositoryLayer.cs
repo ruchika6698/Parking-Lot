@@ -66,13 +66,54 @@ namespace RepositoryLayer.Services
         }
 
         /// <summary>
-        ///  database connection for get all user details
+        ///  database connection get specific parking details
+        /// </summary>
+        /// <param name="ParkingID">Get specific parking details</param>
+        /// <returns></returns>
+        public ParkingDetails GetspecificParkingDetails(int ParkingID)
+        {
+            try
+            {
+                ParkingDetails parking = new ParkingDetails();
+                SqlConnection connection = DatabaseConnection();
+                //for store procedure and connection to database 
+                SqlCommand command = StoreProcedureConnection("spSpecificParkingDetails", connection);
+                command.Parameters.Add("@ParkingID", SqlDbType.Int).Value = ParkingID;
+                connection.Open();
+                //Read data from database
+                SqlDataReader Response = command.ExecuteReader();
+                while (Response.Read())
+                {
+                    parking.ParkingID = Convert.ToInt32(Response["ParkingID"]);
+                    parking.UserID = Convert.ToInt32(Response["UserID"]);
+                    parking.VehicleOwnerAddress = Response["VehicleOwnerAddress"].ToString();
+                    parking.VehicleNumber = Response["VehicleNumber"].ToString();
+                    parking.VehicalBrand = Response["VehicalBrand"].ToString();
+                    parking.VehicalColor = Response["VehicalColor"].ToString();
+                    parking.ParkingSlot = Response["ParkingSlot"].ToString();
+                    parking.ParkingUserCategory = Response["ParkingUserCategory"].ToString();
+                    parking.ParkingStatus = Response["ParkingStatus"].ToString();
+                    parking.Charges = Response["Charges"].ToString();
+                    parking.EntryTime = Convert.ToDateTime(Response["EntryTime"]);
+                    parking.ExitTime = Convert.ToDateTime(Response["ExitTime"]);
+                }
+                connection.Close();
+                return parking;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        /// <summary>
+        ///  database connection for get all Parking details
         /// </summary>
         public IEnumerable<ParkingDetails> GetAllParkingDetails()
         {
             try
             {
-                List<ParkingDetails> listuser = new List<ParkingDetails>();
+                List<ParkingDetails> listparking = new List<ParkingDetails>();
                 SqlConnection connection = DatabaseConnection();
                 //for store procedure and connection to database 
                 SqlCommand command = StoreProcedureConnection("spAllVehicleParking", connection);
@@ -81,23 +122,23 @@ namespace RepositoryLayer.Services
                 SqlDataReader Response = command.ExecuteReader();
                 while (Response.Read())
                 {
-                    ParkingDetails user = new ParkingDetails();
-                    user.ParkingID = Convert.ToInt32(Response["ParkingID"]);
-                    user.UserID = Convert.ToInt32(Response["UserID"]);
-                    user.VehicleOwnerAddress = Response["VehicleOwnerAddress"].ToString();
-                    user.VehicleNumber = Response["VehicleNumber"].ToString();
-                    user.VehicalBrand = Response["VehicalBrand"].ToString();
-                    user.VehicalColor = Response["VehicalColor"].ToString();
-                    user.ParkingSlot = Response["ParkingSlot"].ToString();
-                    user.ParkingUserCategory = Response["ParkingUserCategory"].ToString();
-                    user.ParkingStatus = Response["ParkingStatus"].ToString();
-                    user.Charges = Response["Charges"].ToString();
-                    user.EntryTime = Convert.ToDateTime(Response["EntryTime"]);
-                    user.ExitTime = Convert.ToDateTime(Response["ExitTime"]);
-                    listuser.Add(user);
+                    ParkingDetails parking = new ParkingDetails();
+                    parking.ParkingID = Convert.ToInt32(Response["ParkingID"]);
+                    parking.UserID = Convert.ToInt32(Response["UserID"]);
+                    parking.VehicleOwnerAddress = Response["VehicleOwnerAddress"].ToString();
+                    parking.VehicleNumber = Response["VehicleNumber"].ToString();
+                    parking.VehicalBrand = Response["VehicalBrand"].ToString();
+                    parking.VehicalColor = Response["VehicalColor"].ToString();
+                    parking.ParkingSlot = Response["ParkingSlot"].ToString();
+                    parking.ParkingUserCategory = Response["ParkingUserCategory"].ToString();
+                    parking.ParkingStatus = Response["ParkingStatus"].ToString();
+                    parking.Charges = Response["Charges"].ToString();
+                    parking.EntryTime = Convert.ToDateTime(Response["EntryTime"]);
+                    parking.ExitTime = Convert.ToDateTime(Response["ExitTime"]);
+                    listparking.Add(parking);
                 }
                 connection.Close();
-                return listuser;
+                return listparking;
             }
             catch (Exception e)
             {
