@@ -1,9 +1,4 @@
-﻿///-----------------------------------------------------------------
-///   Class:       ParkingController
-///   Description: Parking Controller
-///   Author:      Ruchika                   Date: 25/9/2020
-///-----------------------------------------------------------------
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -19,13 +14,11 @@ namespace ParkingLotAPI.Controllers
     [ApiController]
     public class ParkingController : ControllerBase
     {
-        private IConfiguration _config;
         IParkingBusinessLayer BusinessLayer;
 
         public ParkingController(IParkingBusinessLayer BusinessDependencyInjection, IConfiguration config)
         {
             BusinessLayer = BusinessDependencyInjection;
-            _config = config;
         }
 
         /// <summary>

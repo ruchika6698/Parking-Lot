@@ -8,12 +8,10 @@ namespace CommonLayer
 {
     public class VehicleModel
     {
-        [Required(ErrorMessage = "Vehicle Owner Name Is Required")]
-        [RegularExpression("^[A-Z][a-zA-Z]{3,25}$", ErrorMessage = "First Name is not valid")]
+        [Required(ErrorMessage = "User ID Is Required")]
         public int UserID { get; set; }
 
         [Required(ErrorMessage = "Vehicle owner address Is Required")]
-        [RegularExpression("^[A-Z][a-zA-Z]{3,100}$", ErrorMessage = "Last Name is not valid")]
         public string VehicleOwnerAddress { get; set; }
 
         [Required(ErrorMessage = "Vehicle Number Is Required")]

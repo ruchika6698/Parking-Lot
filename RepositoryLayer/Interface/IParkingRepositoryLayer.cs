@@ -1,6 +1,6 @@
 ﻿///-----------------------------------------------------------------
 ///   Class:       IParkingRepositoryLayer
-///   Description: Business Layer Interface for Parking
+///   Description: Repository Layer Interface for Parking
 ///   Author:      Ruchika                   Date: 25/9/2020
 ///-----------------------------------------------------------------
 using CommonLayer;

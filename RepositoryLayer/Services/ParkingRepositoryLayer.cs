@@ -27,7 +27,7 @@ namespace RepositoryLayer.Services
         /// <summary>
         ///  database connection for Registrion
         /// </summary>
-        /// <param name="data"> store the Complete Employee information</param>
+        /// <param name="data"> store the Complete Parking information</param>
         /// <returns></returns>
         public async Task<bool> VehicleParking(VehicleModel data)
         {

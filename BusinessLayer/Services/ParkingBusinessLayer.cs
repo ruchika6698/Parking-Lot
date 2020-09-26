@@ -6,7 +6,6 @@
 using BusinessLayer.Interface;
 using CommonLayer;
 using RepositoryLayer.Interface;
-using RepositoryLayer.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -17,7 +16,7 @@ namespace BusinessLayer.Services
     public class ParkingBusinessLayer : IParkingBusinessLayer
     {
         private IParkingRepositoryLayer _ParkingRepository;
-        public ParkingBusinessLayer(ParkingRepositoryLayer ParkingRepository)
+        public ParkingBusinessLayer(IParkingRepositoryLayer ParkingRepository)
         {
             _ParkingRepository = ParkingRepository;
         }

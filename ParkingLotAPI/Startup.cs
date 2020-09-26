@@ -34,11 +34,13 @@ namespace ParkingLotAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            services.AddSingleton<IConfiguration>(Configuration);
+
             services.AddTransient<IUserRepositoryLayer, UserRepositoryLayer>();
             services.AddTransient<IUserBusinessLayer, UserBusinessLayer>();
+
             services.AddTransient<IParkingRepositoryLayer, ParkingRepositoryLayer>();
             services.AddTransient<IParkingBusinessLayer, ParkingBusinessLayer>();
+
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
@@ -98,14 +100,10 @@ namespace ParkingLotAPI
             {
                 app.UseHsts();
             }
-            //app.UseAuthentication();
+            app.UseAuthentication();
             app.UseHttpsRedirection();
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
-            });
+            app.UseMvc();
+
             app.UseSwagger();
             app.UseSwaggerUI(options =>
             {

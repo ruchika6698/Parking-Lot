@@ -25,7 +25,7 @@ namespace ParkingLotAPI.Controllers
     public class UserController : ControllerBase
     {
         private IConfiguration _config;
-        IUserBusinessLayer BusinessLayer;
+        private readonly IUserBusinessLayer BusinessLayer;
 
         public UserController(IUserBusinessLayer BusinessDependencyInjection, IConfiguration config)
         {
@@ -146,6 +146,7 @@ namespace ParkingLotAPI.Controllers
     /// <param name="ID">Delete data</param>
     /// <returns></returns>
     [HttpDelete("{ID}")]
+    [Authorize(Roles = "Owner")]
         public IActionResult DeleteUser(int ID)
         {
             try
@@ -177,7 +178,7 @@ namespace ParkingLotAPI.Controllers
         /// <param name="ID">Update data</param>
         /// <returns></returns>
         [HttpGet("{ID}")]
-        //[Authorize(Roles = "Owner")]
+        [Authorize(Roles = "Owner")]
         public IActionResult Getspecificuser(int ID)
         {
             try
@@ -207,13 +208,11 @@ namespace ParkingLotAPI.Controllers
         ///  API for get all User details
         /// </summary>
         [HttpGet]
-        //[Authorize(Roles = "Owner")]
+        [Authorize(Roles = "Owner")]
         public ActionResult<IEnumerable<UserDetails>> GetAllUser()
         {
             try
             {
-                //var user = HttpContext.User; 
-                //int EmailID = Convert.ToInt32(user.Claims.FirstOrDefault(u => u.Type == "EmailID").Value);
                 var result = BusinessLayer.GetAllUser();
                 //if result is not equal to zero then details found
                 if (!result.Equals(null))
