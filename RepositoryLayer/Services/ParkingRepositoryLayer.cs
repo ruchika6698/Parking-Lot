@@ -66,6 +66,40 @@ namespace RepositoryLayer.Services
         }
 
         /// <summary>
+        ///   database connection for Update Excisting entry
+        /// </summary>
+        /// <param name="ParkingID">Primary key</param>
+        /// <param name="data">Update data</param>
+        /// <returns></returns>
+        public int UpdateParkingDetail(int ParkingID, UpdateParking data)
+        {
+            try
+            {
+                SqlConnection connection = DatabaseConnection();
+                //for store procedure and connection to database 
+                SqlCommand command = StoreProcedureConnection("spUpdateParkingdetails", connection);
+                command.Parameters.Add("@ParkingID", SqlDbType.Int).Value = ParkingID;
+                command.Parameters.AddWithValue("@ParkingStatus", data.ParkingStatus);
+                command.Parameters.AddWithValue("@ExitTime", data.ExitTime);
+                connection.Open();
+                int Response = command.ExecuteNonQuery();
+                connection.Close();
+                if (Response == 0)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return 1;
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        /// <summary>
         ///  database connection get specific parking details
         /// </summary>
         /// <param name="ParkingID">Get specific parking details</param>

@@ -15,6 +15,8 @@ namespace BusinessLayer.Interface
     {
         //Interface method for Parking Vehicle Registration
         Task<bool> VehicleParking(VehicleModel data);
+        //Interface method for update Parking detail
+        int UpdateParkingDetail(int ParkingID, UpdateParking data);
 
         //Interface method for get Parking detail by id
         ParkingDetails GetspecificParkingDetails(int ParkingID);

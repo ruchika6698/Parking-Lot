@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BusinessLayer.Interface;
 using CommonLayer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -54,12 +55,43 @@ namespace ParkingLotAPI.Controllers
         }
 
         /// <summary>
+        ///  API for Update Excisting entry
+        /// </summary>
+        /// <param name="ParkingID">Primary key</param>
+        /// <param name="Info">Update data</param>
+        /// <returns></returns>
+        [HttpPut("{ParkingID}")]
+        public ActionResult UpdateParkingDetail([FromRoute]int ParkingID, [FromBody]UpdateParking Info)
+        {
+            try
+            {
+                var response = BusinessLayer.UpdateParkingDetail(ParkingID, Info);
+                if (!response.Equals(null))
+                {
+                    var Status = "Success";
+                    var Message = "Employee Data Updated Sucessfully";
+                    return this.Ok(new { Status, Message, data = Info });
+                }
+                else
+                {
+                    var status = "Unsuccess";
+                    var Message = "Employee Data not Updated";
+                    return this.BadRequest(new { status, Message, data = Info });
+                }
+            }
+            catch (Exception exception)
+            {
+                return BadRequest(new { error = exception.Message });
+            }
+        }
+
+        /// <summary>
         ///  API for get specific Parking details
         /// </summary>
         /// <param name="ParkingID">get specific  data</param>
         /// <returns></returns>
         [HttpGet("{ParkingID}")]
-        //[Authorize(Roles = "Owner")]
+        [Authorize(Roles = "Owner,User,Police")]
         public IActionResult GetspecificParkingDetails(int ParkingID)
         {
             try
@@ -88,8 +120,8 @@ namespace ParkingLotAPI.Controllers
         /// <summary>
         ///  API for get all Parking Vehicles details
         /// </summary>
-        [HttpGet]
-        //[Authorize(Roles = "Owner")]
+       [HttpGet]
+       [Authorize(Roles = "Owner,Police,Security")]
         public ActionResult<IEnumerable<ParkingDetails>> GetAllParkingDetails()
         {
             try

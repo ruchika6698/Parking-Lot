@@ -48,6 +48,25 @@ namespace BusinessLayer.Services
         }
 
         /// <summary>
+        ///  API for Update Excisting entry
+        /// </summary>
+        /// <param name="ParkingID">Primary key</param>
+        /// <param name="data">Update data</param>
+        /// <returns></returns>
+        public int UpdateParkingDetail(int ParkingID, UpdateParking data)
+        {
+            try
+            {
+                var result = _ParkingRepository.UpdateParkingDetail(ParkingID, data);
+                return result;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        /// <summary>
         ///  API for get specific User details
         /// </summary>
         /// <param name="ID"> get specific Entry</param>
